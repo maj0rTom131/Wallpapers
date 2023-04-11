@@ -1,0 +1,10 @@
+<!-- Move into /usr/share/gnome-background-properties. Remove .gnome extension -->
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>La Saline</name>
+    <filename>/path/to/La-Saline.xml</filename>
+    <options>zoom</options>
+  </wallpaper>
+</wallpapers>
