@@ -1,5 +1,25 @@
 #!/bin/bash
 
+sleep 5
+
+success=false
+counter=0
+
+while  [ "$success" != "true" ]
+do
+    if [ $counter -gt 4 ]; then
+	notify-send "Wallpaper update failed"
+        exit 1
+    fi
+    nslookup google.com 2>&1 >/dev/null
+
+    if [ $? -eq 0 ]; then
+        success=true
+    fi
+    counter=$((counter + 1))
+    sleep $counter
+done
+
 # get current location
 location=$(curl -s https://ipinfo.io/loc)
 
@@ -29,5 +49,4 @@ xmlstarlet edit --inplace \
   --update '/background/starttime/second' --value "$(TZ=$timezone date -d @$sunrise_after_unix +'%-S')" \
   --update '/background/static[1]/duration' --value "$((sunset_before_unix-sunrise_after_unix))" \
   --update '/background/static[2]/duration' --value "$((sunrise_before_unix+86400-sunset_after_unix))" \
- /path/to/La-Saline.xml
-
+  /path/to/La-Saline.xml
